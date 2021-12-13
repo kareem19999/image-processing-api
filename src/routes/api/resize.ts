@@ -11,27 +11,35 @@ const resize = express.Router();
 resize.get(
   '/imageName=:imageName&width=:width&height=:height',
   logger,
-   async (req, res) => {
+  async (req, res) => {
     const Name = req.params.imageName;
     const Width = req.params.width;
     const Height = req.params.height;
 
     const nameArr = nameType(Name);
-    if (nameArr[0] == 'Invalid Name!' || !checkFile(constants.SOURCEPATH, Name)) {
-      res.send("Invalid file format or file does not exist");
-
+    if (
+      nameArr[0] == 'Invalid Name!' ||
+      !checkFile(constants.SOURCEPATH, Name)
+    ) {
+      res.send('Invalid file format or file does not exist');
     } else {
       if (checkFile(constants.DESTPATH, `${nameArr[0]}_thumb.${nameArr[1]}`)) {
         //Means file already exists
         console.log('Found cached image');
         res.sendFile(`${constants.ABS_DEST}${nameArr[0]}_thumb.${nameArr[1]}`);
-      }else
-      {
-        const img= await processImg(parseInt(Width), parseInt(Height), nameArr);
+      } else {
+        const img = await processImg(
+          parseInt(Width),
+          parseInt(Height),
+          nameArr
+        );
         //img.toFile(`${constants.DESTPATH}${nameArr[0]}_thumb.${nameArr[1]}`);
-        fs.writeFileSync(`${constants.DESTPATH}${nameArr[0]}_thumb.${nameArr[1]}`,img);
+        fs.writeFileSync(
+          `${constants.DESTPATH}${nameArr[0]}_thumb.${nameArr[1]}`,
+          img
+        );
         res.sendFile(`${constants.ABS_DEST}${nameArr[0]}_thumb.${nameArr[1]}`);
-        console.log("Done");
+        console.log('Done');
       }
     }
     console.log(res.statusCode);
