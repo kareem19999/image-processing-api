@@ -6,7 +6,7 @@ import fs from 'fs';
  * @param {string} filename - The filename as string (Both name and format)
  * @returns {boolean} Returns true if file was found and invalid if file does not exist
  */
-const checkFile = (path: string, filename: string) => {
+const checkFile = (path: string, filename: string): boolean => {
   if (fs.existsSync(`${path}${filename}`)) {
     return true;
   } else {
