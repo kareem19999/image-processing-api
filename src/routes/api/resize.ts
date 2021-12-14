@@ -50,6 +50,7 @@ resize.get(
         );
         //img.toFile(`${constants.DESTPATH}${nameArr[0]}_thumb.${nameArr[1]}`);
         console.log('Run Path:' + process.cwd());
+        
         fs.writeFileSync(
           `${constants.DESTPATH}${nameArr[0]}_thumb_${Width}_${Height}.${nameArr[1]}`,
           img
