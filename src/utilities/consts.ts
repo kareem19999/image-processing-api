@@ -4,9 +4,6 @@ const constants = {
   DESTPATH: './assets/thumb/',
   //This cuts the directory until image-processing-api to get the correct route to destination image
   //This also deals with build
-  ABS_DEST: `${__dirname.replace(
-    `\\src\\utilities`,
-    ''
-  )}/assets/thumb/`.replace(`\\build\\utilities`, ''),
+  ABS_DEST: `${process.cwd()}/assets/thumb/`,
 };
 export default constants;

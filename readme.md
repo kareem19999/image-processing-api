@@ -1,7 +1,7 @@
 ## How to Use ##
 1) Clone the repository from github.
 2) Go to the folder in command line.
-3) Run ```npm install -g```. Some packages might need to be installed globally to work.
+3) Run ```npm install -g```. Some packages might need to be installed globally to work. If there was an error related to ```ts-node``` then try ```npm install -g ts-node```
 4) To Run the application ```npm run start```.
 5) To run the tests ```npm run test```.
 6) To build the application and run it ```npm run build``` then .```node build/.```.

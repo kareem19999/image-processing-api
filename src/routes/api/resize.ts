@@ -29,7 +29,8 @@ resize.get(
       !checkFile(constants.SOURCEPATH, Name)
     ) {
       res.send('Invalid file format or file does not exist');
-    } else {
+      //Means both are truthy numbers
+    } else if (parseInt(Width) > 0 && parseInt(Height) > 0) {
       if (
         checkFile(
           constants.DESTPATH,
@@ -48,6 +49,7 @@ resize.get(
           nameArr
         );
         //img.toFile(`${constants.DESTPATH}${nameArr[0]}_thumb.${nameArr[1]}`);
+        console.log('Run Path:' + process.cwd());
         fs.writeFileSync(
           `${constants.DESTPATH}${nameArr[0]}_thumb_${Width}_${Height}.${nameArr[1]}`,
           img
@@ -57,6 +59,8 @@ resize.get(
         );
         console.log('Done');
       }
+    } else {
+      res.send('One or more parameters is Not a Number (NaN) or less than or equal 0');
     }
     console.log(res.statusCode);
   }
